@@ -1,0 +1,17 @@
+{
+  "singleQuote": true,
+  "jsxBracketSameLine": true,
+  "trailingComma": "all",
+  "printWidth": 80,
+  "parser": "babylon",
+  "overrides": [
+    {
+      "files": [".prettierrc", ".eslintrc", "*.json"],
+      "options": { "parser": "json" }
+    },
+    {
+      "files": ["*.scss"],
+      "options": { "parser": "scss" }
+    }
+  ]
+}
