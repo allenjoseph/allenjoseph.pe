@@ -1,0 +1,21 @@
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+html::-webkit-scrollbar {
+  background-color: #ddd;
+  width: 12px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #666;
+}
+
+body {
+  background: #f4f4f4;
+  background-image: url('/img/diamond.png');
+  font-family: 'Open Sans Condensed', sans-serif;
+}

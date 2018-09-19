@@ -1,0 +1,7 @@
+#skill-grid.card-columns {
+  $card-width: 260px;
+
+  .card {
+    min-width: $card-width;
+  }
+}

@@ -1,0 +1,9 @@
+section.body-content {
+  $columns: 3;
+  $columnWidth: 260px;
+  $gutter: 15px;
+
+  max-width: (($columnWidth + ($gutter * 2)) * $columns) + ($gutter * 2);
+  padding: ($gutter * 2) $gutter;
+  margin: auto;
+}
