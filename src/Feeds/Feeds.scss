@@ -6,11 +6,12 @@
   overflow-y: auto;
   list-style: none;
   background-color: rgba(255, 255, 255, 0.1);
-  margin: 0px;
+  margin: auto;
   padding: 0px;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(lg) {
     max-width: 300px;
+    margin: 0px;
   }
 
   &::-webkit-scrollbar {
@@ -45,10 +46,60 @@
 #feed-grid.card-deck {
   $card-width: 260px;
 
+  position: relative;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+
+  justify-content: center;
   flex-wrap: nowrap;
   overflow: hidden;
+  min-height: 380px;
+
+  @include media-breakpoint-down(xs) {
+    align-items: center;
+  }
 
   .card {
-    min-width: $card-width;
+    width: initial;
+    min-width: initial;
+    max-width: $card-width;
+    transition: all 1s ease;
+
+    @include media-breakpoint-down(xs) {
+      width: initial;
+      min-width: initial;
+    }
+  }
+  .loading {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 30px);
+    height: 1px;
+    background: DeepSkyBlue;
+    box-shadow: 0 2px 0 black;
+    margin: auto;
+    overflow: hidden;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-100%);
+      background: DeepPink;
+    }
+    &.animate::before {
+      animation: loading 10s ease infinite;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
