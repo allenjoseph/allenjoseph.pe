@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FeedPropTypes from './FeedPropTypes';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export default class FeedCard extends React.Component {
   render() {
