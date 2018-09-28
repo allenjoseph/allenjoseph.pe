@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Header.css';
 import FeedList from '../Feeds/FeedList';
 import Avatar from './Avatar';
@@ -12,7 +13,7 @@ export default class Header extends React.Component {
           <Avatar />
         </div>
         <div className="profile-description col-12 col-md-5">
-          <Profile />
+          <Profile info={this.props.info} />
         </div>
         <div className="profile-feeds col-12 col-md-4">
           <FeedList />
@@ -21,3 +22,7 @@ export default class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  info: PropTypes.object
+};
