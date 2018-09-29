@@ -15,7 +15,8 @@ class App extends React.Component {
     this.state = {
       info: {},
       skills: {},
-      videos: {}
+      videos: {},
+      feeds: []
     };
   }
 
@@ -43,14 +44,27 @@ class App extends React.Component {
             });
           });
       });
+
+    fetch(
+      'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fes.gizmodo.com%2Frss'
+    )
+      .then(response => response.json())
+      .then(data => {
+        if (!data || !data.items) {
+          return;
+        }
+        this.setState({
+          feeds: data.items
+        });
+      });
   }
 
   render() {
     return (
       <div className="container-fluid">
-        <Header info={this.state.info} />
+        <Header info={this.state.info} feeds={this.state.feeds} />
         <section className="body-content">
-          <FeedGrid />
+          <FeedGrid feeds={this.state.feeds} />
           <SkillGrid skills={this.state.skills} />
           <hr />
           <VideoGrid videos={this.state.videos} />

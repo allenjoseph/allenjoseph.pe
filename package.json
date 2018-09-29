@@ -13,18 +13,11 @@
     "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/allenjoseph/allenjoseph.pe.git"
   },
-  "keywords": [
-    "allenjoseph.pe"
-  ],
+  "keywords": ["allenjoseph.pe"],
   "author": "Allen Joseph",
   "license": "ISC",
   "bugs": {

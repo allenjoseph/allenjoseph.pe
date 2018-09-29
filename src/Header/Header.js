@@ -16,7 +16,7 @@ export default class Header extends React.Component {
           <Profile info={this.props.info} />
         </div>
         <div className="profile-feeds col-12 col-md-4">
-          <FeedList />
+          <FeedList feeds={this.props.feeds} />
         </div>
       </header>
     );
@@ -24,5 +24,6 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  info: PropTypes.object
+  info: PropTypes.object,
+  feeds: PropTypes.array
 };
