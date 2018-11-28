@@ -21,42 +21,51 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/__/firebase/init.json')
+    const appDataUrl = '/__/firebase/init.json';
+    fetch(appDataUrl)
       .then(response => response.json())
-      .then(config => {
-        firebase.initializeApp(config);
-        firebase
-          .database()
-          .ref('/data')
-          .once('value')
-          .then(snapshot => {
-            const data = snapshot.val() || {};
-            this.setState({
-              info: {
-                title: data.title,
-                description: data.description,
-                slogan: data.slogan,
-                direction: data.direction,
-                copyright: data.copyright
-              },
-              skills: data.sections.skills,
-              videos: data.sections.articles
-            });
-          });
-      });
+      .then(config => this.getAppData(config))
+      .then(snapshot => this.setAppData(snapshot.val() || {}));
 
-    fetch(
-      'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fes.gizmodo.com%2Frss'
-    )
+    const feedsDataUrl =
+      'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fes.gizmodo.com%2Frss';
+    fetch(feedsDataUrl)
       .then(response => response.json())
-      .then(data => {
-        if (!data || !data.items) {
-          return;
-        }
-        this.setState({
-          feeds: data.items
-        });
-      });
+      .then(data => this.setFeedsData(data));
+  }
+
+  getAppData(config) {
+    firebase.initializeApp(config);
+    return firebase
+      .database()
+      .ref('/data')
+      .once('value');
+  }
+
+  setAppData(data) {
+    if (!data) {
+      return;
+    }
+    this.setState({
+      info: {
+        title: data.title,
+        description: data.description,
+        slogan: data.slogan,
+        direction: data.direction,
+        copyright: data.copyright
+      },
+      skills: data.sections.skills,
+      videos: data.sections.articles
+    });
+  }
+
+  setFeedsData(data) {
+    if (!data || !data.items) {
+      return;
+    }
+    this.setState({
+      feeds: data.items
+    });
   }
 
   render() {
