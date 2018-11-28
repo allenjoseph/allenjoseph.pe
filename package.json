@@ -17,9 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/allenjoseph/allenjoseph.pe.git"
   },
-  "keywords": [
-    "allenjoseph.pe"
-  ],
+  "keywords": ["allenjoseph.pe"],
   "author": "Allen Joseph",
   "license": "ISC",
   "bugs": {
@@ -40,15 +38,10 @@
     "react-testing-library": "^5.1.0"
   },
   "devDependencies": {
-    "eslint": "^5.6.0",
+    "eslint": "5.6.0",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.0.0-rc.14",
     "prettier": "1.14.2"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }
