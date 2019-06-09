@@ -5,44 +5,49 @@ import PropTypes from 'prop-types';
 export default class FeedGrid extends React.Component {
   constructor(props) {
     super(props);
+    this.animationStarted = false;
     this.loading = React.createRef();
-    this.dataFetched = false;
     this.state = {
       start: 0,
       feeds: []
     };
   }
 
-  startInterval() {
-    this.nextThree();
-
-    const tenSeconds = 10000;
-    this.sliderID = setInterval(() => this.nextThree(), tenSeconds);
-  }
-
   componentWillUnmount() {
     clearInterval(this.sliderID);
   }
 
-  nextThree() {
+  startAnimation() {
+    if (!this.props.feeds || !this.props.feeds.length) {
+      return;
+    }
+
+    this.animationStarted = true;
+    this.showNextFeeds();
+
+    const delay = 10000;
+    this.sliderID = setInterval(() => this.showNextFeeds(), delay);
+  }
+
+  showNextFeeds() {
     this.loading.current.classList.remove('animate');
     this.loading.current.classList.add('animate');
 
-    this.setState(state => {
-      const end = state.start + 3;
-      const start = end > this.props.feeds.length ? 0 : end;
-      return {
-        start,
-        feeds: this.props.feeds.slice(state.start, end)
-      };
-    });
+    this.setState(this.getNextState.bind(this));
+  }
+
+  getNextState(state) {
+    const end = state.start + 3;
+    const start = end > this.props.feeds.length ? 0 : end;
+    const feeds = this.props.feeds.slice(state.start, end);
+    return { start, feeds };
   }
 
   render() {
-    if (!this.dataFetched && this.props.feeds && this.props.feeds.length) {
-      this.dataFetched = true;
-      this.startInterval();
+    if (!this.animationStarted) {
+      this.startAnimation();
     }
+
     return (
       <div id="feed-grid" className="card-deck">
         {this.state.feeds.map(feed => (

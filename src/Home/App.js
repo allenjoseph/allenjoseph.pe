@@ -2,11 +2,11 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import FeedGrid from './Feeds/FeedGrid';
-import SkillGrid from './Skills/SkillGrid';
-import VideoGrid from './Videos/VideoGrid';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import FeedGrid from '../Feeds/FeedGrid';
+import SkillGrid from '../Skills/SkillGrid';
+import VideoGrid from '../Videos/VideoGrid';
 import './App.css';
 
 class App extends React.Component {
