@@ -8,8 +8,8 @@ export default class FeedList extends React.Component {
     const feeds = this.props.feeds || [];
     return (
       <ul className="feeds-titles-box">
-        {feeds.map(feed => (
-          <Feed key={feed.guid} data={feed} />
+        {feeds.map((feed, i) => (
+          <Feed key={`feed-${i}`} data={feed} />
         ))}
       </ul>
     );

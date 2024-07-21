@@ -50,8 +50,8 @@ export default class FeedGrid extends React.Component {
 
     return (
       <div id="feed-grid" className="card-deck">
-        {this.state.feeds.map(feed => (
-          <FeedCard key={feed.guid} data={feed} />
+        {this.state.feeds.map((feed, i) => (
+          <FeedCard key={`feedcard-${i}`} data={feed} />
         ))}
         <div className="loading" ref={this.loading} />
       </div>
